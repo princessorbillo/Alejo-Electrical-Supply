@@ -1,0 +1,369 @@
+/* ============================================
+   ALEJO ELECTRICAL SUPPLY — Main Script
+   ============================================ */
+
+// ---- Language Data ----
+const translations = {
+  en: {
+    // Navbar
+    navHome: 'Home',
+    navAbout: 'About',
+    navServices: 'Services',
+    navProfile: 'Company Profile',
+    navContact: 'Contact Us',
+
+    // Hero
+    heroTitle1: 'Alejo',
+    heroTitle2: 'Electrical Supply',
+    heroTagline: 'Heater Fabrication • Electrical Solutions',
+    heroDesc: 'Your trusted partner in quality electrical supplies and custom heater fabrication in Davao City.',
+    heroBtnProfile: 'View Company Profile',
+    heroBtnContact: 'Contact Us',
+    scrollText: 'Scroll Down',
+
+    // About
+    aboutBadge: 'About Us',
+    aboutTitle: 'Your Trusted <span class="accent">Electrical Partner</span> in Davao',
+    aboutP1: 'Alejo Electrical Supply is a leading provider of quality electrical supplies and custom heater fabrication services located in Sitio Sta. Marina, Binugao, Toril, Davao City.',
+    aboutP2: 'Under the leadership of proprietor Alejo M. Orbillo, we have built a reputation for reliability, craftsmanship, and dedication to customer satisfaction. We provide a wide range of electrical products and specialized heater fabrication services to meet your needs.',
+    aboutYears: 'Years of',
+    aboutExperience: 'Excellence',
+    aboutH1: 'Quality Products',
+    aboutH2: 'Expert Fabrication',
+    aboutH3: 'Davao City Based',
+    aboutH4: 'Customer Focused',
+
+    // Services
+    servicesBadge: 'Our Services',
+    servicesTitle: 'What We Offer',
+    servicesSubtitle: 'Comprehensive electrical supply solutions and custom heater fabrication services.',
+    svc1Title: 'Heater Fabrication',
+    svc1Desc: 'Custom-designed and fabricated heating elements for industrial, commercial, and residential applications.',
+    svc2Title: 'Electrical Supplies',
+    svc2Desc: 'Wide range of quality electrical products, wiring, switches, panels, and components.',
+    svc3Title: 'Custom Solutions',
+    svc3Desc: 'Tailored electrical solutions designed to meet your specific requirements and standards.',
+    svc4Title: 'Installation & Repair',
+    svc4Desc: 'Professional installation and repair services for all electrical and heating systems.',
+
+    // Profile
+    profileBadge: 'Company Profile',
+    profileTitle: 'Learn More About Us',
+    profileSubtitle: 'Browse through our company profile to learn about our products, services, and commitment to quality.',
+    profileBtn: 'Open Company Profile',
+    profileModalTitle: 'Company Profile — Alejo Electrical Supply',
+
+    // Contact
+    contactBadge: 'Get In Touch',
+    contactTitle: 'Contact <span class="accent">Us</span>',
+    contactDesc: 'Have questions or need a quote? Reach out to us through any of the channels below. We\'d love to hear from you!',
+    contactProprietor: 'Proprietor',
+    contactProprietorVal: 'Alejo M. Orbillo',
+    contactAddress: 'Address',
+    contactAddressVal: 'Sitio Sta. Marina, Binugao, Toril, Davao City',
+    contactPhone: 'Phone',
+    contactEmail: 'Email',
+    contactFb: 'Facebook',
+    contactFbVal: 'Alejo Electrical Supply',
+    mapTitle: 'Find Us',
+
+    // Footer
+    footerCopy: '© 2024 Alejo Electrical Supply. All Rights Reserved.',
+    footerPrivacy: 'Privacy Policy',
+    footerTerms: 'Terms of Service',
+  },
+  fil: {
+    // Navbar
+    navHome: 'Home',
+    navAbout: 'Tungkol',
+    navServices: 'Serbisyo',
+    navProfile: 'Profile ng Kumpanya',
+    navContact: 'Makipag-ugnayan',
+
+    // Hero
+    heroTitle1: 'Alejo',
+    heroTitle2: 'Electrical Supply',
+    heroTagline: 'Heater Fabrication • Solusyong Elektrikal',
+    heroDesc: 'Ang inyong mapagkakatiwalaang kasosyo sa de-kalidad na electrical supplies at custom heater fabrication sa Davao City.',
+    heroBtnProfile: 'Tingnan ang Company Profile',
+    heroBtnContact: 'Makipag-ugnayan',
+    scrollText: 'Mag-scroll Pababa',
+
+    // About
+    aboutBadge: 'Tungkol sa Amin',
+    aboutTitle: 'Ang Inyong Mapagkakatiwalaang <span class="accent">Kasosyo sa Elektrikal</span> sa Davao',
+    aboutP1: 'Ang Alejo Electrical Supply ay isang nangungunang tagapagbigay ng de-kalidad na electrical supplies at custom heater fabrication services na matatagpuan sa Sitio Sta. Marina, Binugao, Toril, Davao City.',
+    aboutP2: 'Sa pamumuno ni proprietor Alejo M. Orbillo, nagtatag kami ng reputasyon para sa pagiging maaasahan, husay sa paggawa, at dedikasyon sa kasiyahan ng customer. Nagbibigay kami ng malawak na hanay ng mga produktong elektrikal at espesyal na serbisyo sa heater fabrication.',
+    aboutYears: 'Taon ng',
+    aboutExperience: 'Kahusayan',
+    aboutH1: 'De-kalidad na Produkto',
+    aboutH2: 'Eksperto sa Fabrication',
+    aboutH3: 'Base sa Davao City',
+    aboutH4: 'Nakatuon sa Customer',
+
+    // Services
+    servicesBadge: 'Aming mga Serbisyo',
+    servicesTitle: 'Ano ang Aming Inaalok',
+    servicesSubtitle: 'Komprehensibong electrical supply solutions at custom heater fabrication services.',
+    svc1Title: 'Heater Fabrication',
+    svc1Desc: 'Custom-designed at fabricated heating elements para sa industrial, commercial, at residential na gamit.',
+    svc2Title: 'Electrical Supplies',
+    svc2Desc: 'Malawak na hanay ng de-kalidad na electrical products, wiring, switches, panels, at iba pang components.',
+    svc3Title: 'Custom na Solusyon',
+    svc3Desc: 'Mga solusyong elektrikal na idinisenyo ayon sa inyong partikular na pangangailangan at pamantayan.',
+    svc4Title: 'Pag-install at Repair',
+    svc4Desc: 'Propesyonal na installation at repair services para sa lahat ng electrical at heating systems.',
+
+    // Profile
+    profileBadge: 'Profile ng Kumpanya',
+    profileTitle: 'Alamin Pa ang Tungkol sa Amin',
+    profileSubtitle: 'Mag-browse sa aming company profile para malaman ang tungkol sa aming mga produkto, serbisyo, at dedikasyon sa kalidad.',
+    profileBtn: 'Buksan ang Company Profile',
+    profileModalTitle: 'Company Profile — Alejo Electrical Supply',
+
+    // Contact
+    contactBadge: 'Makipag-ugnayan',
+    contactTitle: 'Makipag-ugnayan <span class="accent">sa Amin</span>',
+    contactDesc: 'May mga katanungan o kailangan ng quotation? Makipag-ugnayan sa amin sa alinman sa mga channel sa ibaba. Nais naming marinig mula sa inyo!',
+    contactProprietor: 'May-ari',
+    contactProprietorVal: 'Alejo M. Orbillo',
+    contactAddress: 'Address',
+    contactAddressVal: 'Sitio Sta. Marina, Binugao, Toril, Davao City',
+    contactPhone: 'Telepono',
+    contactEmail: 'Email',
+    contactFb: 'Facebook',
+    contactFbVal: 'Alejo Electrical Supply',
+    mapTitle: 'Hanapin Kami',
+
+    // Footer
+    footerCopy: '© 2024 Alejo Electrical Supply. Lahat ng Karapatan ay Nakalaan.',
+    footerPrivacy: 'Patakaran sa Privacy',
+    footerTerms: 'Mga Tuntunin ng Serbisyo',
+  }
+};
+
+let currentLang = 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key]) {
+      if (el.getAttribute('data-i18n-html') === 'true') {
+        el.innerHTML = t[key];
+      } else {
+        el.textContent = t[key];
+      }
+    }
+  });
+
+  // Update language buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  localStorage.setItem('alejo-lang', lang);
+}
+
+// ---- Navbar Scroll ----
+function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const navOverlay = document.getElementById('nav-overlay');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile toggle
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+    navOverlay.classList.toggle('open');
+    document.body.classList.toggle('no-scroll');
+  });
+
+  // Close mobile nav on overlay click
+  navOverlay.addEventListener('click', closeNav);
+
+  // Close mobile nav on link click
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+  function closeNav() {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+    navOverlay.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+  }
+}
+
+// ---- PDF Scroll Viewer ----
+let pdfDoc = null;
+
+async function initPDFViewer() {
+  const openBtn = document.getElementById('open-profile-btn');
+  const overlay = document.getElementById('pdf-modal-overlay');
+  const closeBtn = document.getElementById('pdf-modal-close');
+
+  openBtn.addEventListener('click', () => {
+    overlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+    if (!pdfDoc) loadPDF();
+  });
+
+  closeBtn.addEventListener('click', closePDFModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closePDFModal();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!overlay.classList.contains('active')) return;
+    if (e.key === 'Escape') closePDFModal();
+  });
+
+  function closePDFModal() {
+    overlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  }
+}
+
+async function loadPDF() {
+  const loadingEl = document.getElementById('pdf-loading');
+  const scrollViewer = document.getElementById('pdf-scroll-viewer');
+
+  loadingEl.style.display = 'flex';
+  scrollViewer.style.display = 'none';
+
+  try {
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    pdfDoc = await pdfjsLib.getDocument('Company Profile.pdf').promise;
+    const totalPages = pdfDoc.numPages;
+
+    scrollViewer.innerHTML = '';
+
+    // Render all pages
+    for (let i = 1; i <= totalPages; i++) {
+      const page = await pdfDoc.getPage(i);
+      const viewport = page.getViewport({ scale: 1.5 });
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      
+      const pageWrapper = document.createElement('div');
+      pageWrapper.className = 'pdf-scroll-page';
+      pageWrapper.appendChild(canvas);
+      scrollViewer.appendChild(pageWrapper);
+    }
+
+    loadingEl.style.display = 'none';
+    scrollViewer.style.display = 'flex';
+
+  } catch (err) {
+    console.error('Error loading PDF:', err);
+    loadingEl.innerHTML = `
+      <div style="color: var(--neutral-500); text-align: center;">
+        <i class="fas fa-exclamation-triangle" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary);"></i>
+        <p>Unable to load the Company Profile.</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Please try refreshing the page.</p>
+      </div>
+    `;
+  }
+}
+
+// ---- Scroll Animations ----
+function initScrollAnimations() {
+  const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in, .stagger-children');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  animatedElements.forEach(el => observer.observe(el));
+}
+
+// ---- ScrollSpy ----
+function initScrollSpy() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (scrollY >= (sectionTop - sectionHeight / 3)) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+}
+
+// ---- Smooth Scroll ----
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+      if (target) {
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+}
+
+// ---- Init ----
+document.addEventListener('DOMContentLoaded', () => {
+  initNavbar();
+  initPDFViewer();
+  initScrollAnimations();
+  initScrollSpy();
+  initSmoothScroll();
+
+  // Language toggle
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
+  // Restore saved language
+  const savedLang = localStorage.getItem('alejo-lang');
+  if (savedLang && translations[savedLang]) {
+    setLanguage(savedLang);
+  }
+
+
+
+  // Initial navbar state
+  if (window.scrollY > 60) {
+    document.getElementById('navbar').classList.add('scrolled');
+  }
+});
