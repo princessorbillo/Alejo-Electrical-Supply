@@ -1,0 +1,375 @@
+/* ============================================
+   PRODUCT PAGE STYLES
+   ============================================ */
+
+.product-page {
+  padding-top: 70px; /* Account for fixed navbar */
+  padding-bottom: var(--space-2xl);
+  min-height: 80vh;
+}
+
+.product-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--neutral-200);
+  padding-bottom: var(--space-md);
+}
+
+.back-link {
+  color: var(--neutral-500);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--transition-fast);
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+.action-buttons {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.product-title {
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: var(--space-xl);
+}
+
+/* Overview Section */
+.product-overview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.product-images {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.main-image-container {
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  background: var(--white);
+  text-align: center;
+  position: relative;
+}
+
+.main-image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: 0 auto;
+}
+
+.enlarge-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: var(--neutral-600);
+  margin-top: var(--space-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.enlarge-hint:hover {
+  background: var(--neutral-100);
+  color: var(--neutral-800);
+}
+
+.pdf-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary);
+  font-weight: 600;
+  padding: 0.5rem;
+  transition: color var(--transition-fast);
+}
+
+.pdf-download-link i {
+  font-size: 1.5rem;
+  color: #e2574c; /* PDF red */
+}
+
+.pdf-download-link:hover {
+  color: var(--primary-dark);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.lead-text {
+  font-size: 1.1rem;
+  color: var(--neutral-700);
+  line-height: 1.7;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  color: var(--neutral-800);
+  margin-top: var(--space-md);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.uses-image {
+  margin: var(--space-sm) auto 0 auto;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+/* Tabs */
+.tabs-container {
+  margin-top: var(--space-2xl);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  background: var(--white);
+  overflow: hidden;
+}
+
+.tab-list {
+  display: flex;
+  list-style: none;
+  background: var(--neutral-100);
+  border-bottom: 1px solid var(--neutral-200);
+  overflow-x: auto;
+}
+
+.tab-item {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: var(--neutral-600);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-right: 1px solid var(--neutral-200);
+  border-top: 3px solid transparent;
+}
+
+.tab-item:hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--primary);
+}
+
+.tab-item.active {
+  background: var(--white);
+  color: var(--primary);
+  border-top-color: var(--primary);
+}
+
+.tab-content {
+  display: none;
+  padding: var(--space-xl);
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Specs Table */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.specs-table th {
+  background: var(--neutral-200);
+  padding: 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: var(--neutral-800);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.specs-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--neutral-200);
+  vertical-align: top;
+}
+
+.specs-table tr td:first-child {
+  font-weight: 600;
+  color: var(--neutral-700);
+  width: 30%;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.specs-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Lists */
+.bullet-list, .download-list {
+  padding-left: 1.5rem;
+}
+
+.bullet-list li, .download-list li {
+  margin-bottom: 0.75rem;
+  color: var(--neutral-700);
+}
+
+.download-list li a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.download-list li a:hover {
+  color: var(--primary-dark);
+}
+
+/* ============================================
+   QUOTE MODAL
+   ============================================ */
+
+.quote-container {
+  max-width: 600px;
+  width: 90%;
+  padding: var(--space-xl);
+}
+
+.quote-header {
+  margin-bottom: var(--space-md);
+}
+
+.quote-header h2 {
+  color: var(--primary);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.required-hint {
+  color: var(--neutral-500);
+  font-style: italic;
+}
+
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--neutral-700);
+}
+
+.required {
+  color: var(--primary);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--neutral-300);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: var(--neutral-50);
+  transition: border-color var(--transition-fast);
+}
+
+.form-group textarea {
+  resize: none;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--white);
+}
+
+.file-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.btn-upload {
+  background: #4caf50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-upload:hover {
+  opacity: 0.9;
+}
+
+.file-name {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+}
+
+.submit-btn {
+  margin-top: var(--space-sm);
+  align-self: flex-start;
+  padding: 0.8rem 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-overview, .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .specs-table tr td:first-child {
+    width: 40%;
+  }
+}
+
+/* Modal specific tweaks (if any) are inherited from styles.css */

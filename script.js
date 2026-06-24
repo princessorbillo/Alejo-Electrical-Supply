@@ -201,6 +201,85 @@ function initNavbar() {
     navOverlay.classList.remove('open');
     document.body.classList.remove('no-scroll');
   }
+
+  // Populate Mega Menu
+  const megaMenu = document.getElementById('mega-menu');
+  if (megaMenu && typeof window.products !== 'undefined') {
+    // Define Categories
+    const categories = {
+      "Immersion Heaters": ["Immersion Heater", "Flange Heater", "Screw Flange Heater", "Circulation Heater"],
+      "Tubular Heaters": ["Tubular Heater", "Tubular Heater with Nipple", "U-Shaped Tubular Heater", "Fins Heater"],
+      "Industrial Heaters": ["Band Heater", "Cartridge Heater", "Strip Heater", "Coil Heater", "Plate Heater"],
+      "Specialty Heaters": ["Air Heater", "Aluminum Block Heater", "Boiler Heater", "Bolt-On Type Heater", "Mold Heater", "Oven Heater"],
+      "Commercial & Appliance": ["Coffee Maker Heater", "Defrost Heater", "Dish Washing Heater", "French Fries Heater", "Hand Dryer Heater", "Sauna Bath Heater", "Tire Recapping Heater", "Whirlpool Heater"],
+      "Bunker/Oil Heaters": ["Bunker Fuel Oil Heater", "Bunker Heater", "Shipping Vessels Bunker/Oil Heater"]
+    };
+
+    // Keep track of assigned products to put the rest in "Other"
+    const assignedIds = new Set();
+
+    Object.keys(categories).forEach(catName => {
+      const catProductsNames = categories[catName];
+      const catProducts = window.products.filter(p => catProductsNames.includes(p.name));
+      
+      if (catProducts.length > 0) {
+        catProducts.forEach(p => assignedIds.add(p.id));
+
+        const groupLi = document.createElement('li');
+        groupLi.className = 'mega-menu-group';
+        groupLi.innerHTML = `<a>${catName} <i class="fas fa-chevron-right" style="font-size: 0.7em; color: var(--neutral-400);"></i></a>`;
+        
+        const subMenuUl = document.createElement('ul');
+        subMenuUl.className = 'mega-submenu';
+        
+        catProducts.forEach(prod => {
+          const linkLi = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `product.html?id=${prod.id}`;
+          link.innerHTML = `<i class="far fa-play-circle" style="color: var(--neutral-400); margin-right: 4px; font-size: 0.8em;"></i> ${prod.name}`;
+          linkLi.appendChild(link);
+          subMenuUl.appendChild(linkLi);
+        });
+        
+        groupLi.appendChild(subMenuUl);
+        megaMenu.appendChild(groupLi);
+      }
+    });
+
+    // Handle any unassigned products
+    const unassigned = window.products.filter(p => !assignedIds.has(p.id));
+    if (unassigned.length > 0) {
+      const groupLi = document.createElement('li');
+      groupLi.className = 'mega-menu-group';
+      groupLi.innerHTML = `<a>Other Products <i class="fas fa-chevron-right" style="font-size: 0.7em; color: var(--neutral-400);"></i></a>`;
+      
+      const subMenuUl = document.createElement('ul');
+      subMenuUl.className = 'mega-submenu';
+      
+      unassigned.forEach(prod => {
+        const linkLi = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `product.html?id=${prod.id}`;
+        link.innerHTML = `<i class="far fa-play-circle" style="color: var(--neutral-400); margin-right: 4px; font-size: 0.8em;"></i> ${prod.name}`;
+        linkLi.appendChild(link);
+        subMenuUl.appendChild(linkLi);
+      });
+      
+      groupLi.appendChild(subMenuUl);
+      megaMenu.appendChild(groupLi);
+    }
+  }
+
+  // Mobile Dropdown Toggle
+  const navDropdownBtn = document.querySelector('.nav-dropdown-btn');
+  if (navDropdownBtn) {
+    navDropdownBtn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        navDropdownBtn.parentElement.classList.toggle('active');
+      }
+    });
+  }
 }
 
 // ---- PDF Scroll Viewer ----
@@ -210,6 +289,8 @@ async function initPDFViewer() {
   const openBtn = document.getElementById('open-profile-btn');
   const overlay = document.getElementById('pdf-modal-overlay');
   const closeBtn = document.getElementById('pdf-modal-close');
+
+  if (!openBtn || !overlay) return;
 
   openBtn.addEventListener('click', () => {
     overlay.classList.add('active');
@@ -366,4 +447,94 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.scrollY > 60) {
     document.getElementById('navbar').classList.add('scrolled');
   }
+});
+
+// ==========================================
+// SEARCH FUNCTIONALITY
+// ==========================================
+function initSearch() {
+  const searchOpenBtns = document.querySelectorAll('#search-open-btn');
+  const searchModal = document.getElementById('search-modal');
+  const searchClose = document.getElementById('search-close');
+  const searchInput = document.getElementById('search-input');
+  const searchResults = document.getElementById('search-results');
+
+  if (!searchModal) return;
+
+  // Open search modal
+  searchOpenBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      searchModal.classList.add('open');
+      document.body.classList.add('no-scroll');
+      setTimeout(() => searchInput.focus(), 100);
+      renderSearchResults('');
+    });
+  });
+
+  // Close search modal
+  if (searchClose) {
+    searchClose.addEventListener('click', () => {
+      searchModal.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      searchInput.value = '';
+    });
+  }
+
+  // Close on outside click
+  searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+      searchModal.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+      searchInput.value = '';
+    }
+  });
+
+  // Handle search input
+  if (searchInput && searchResults) {
+    searchInput.addEventListener('input', (e) => {
+      renderSearchResults(e.target.value.toLowerCase());
+    });
+  }
+
+  function renderSearchResults(query) {
+    searchResults.innerHTML = '';
+    
+    if (!window.products || window.products.length === 0) return;
+
+    const filtered = window.products.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.description.toLowerCase().includes(query)
+    );
+
+    if (filtered.length === 0) {
+      searchResults.innerHTML = '<p style="color: #666; padding: 1rem; text-align: center;">No products found.</p>';
+      return;
+    }
+
+    filtered.forEach(p => {
+      const a = document.createElement('a');
+      a.href = `product.html?id=${p.id}`;
+      a.style.display = 'block';
+      a.style.padding = '1rem';
+      a.style.textDecoration = 'none';
+      a.style.color = 'var(--neutral-800)';
+      a.style.background = 'var(--neutral-50)';
+      a.style.borderRadius = '8px';
+      a.style.transition = 'background 0.2s';
+      
+      a.onmouseenter = () => a.style.background = '#ffe5e5';
+      a.onmouseleave = () => a.style.background = 'var(--neutral-50)';
+
+      a.innerHTML = `
+        <h4 style="margin: 0; color: var(--primary); font-size: 1.1rem;">${p.name}</h4>
+        <p style="margin: 0.25rem 0 0 0; font-size: 0.9rem; color: #555; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${p.description}</p>
+      `;
+      searchResults.appendChild(a);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSearch();
 });

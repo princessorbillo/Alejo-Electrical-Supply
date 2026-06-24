@@ -37,8 +37,15 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#home" data-i18n="navHome">Home</a></li>
         <li><a href="#about" data-i18n="navAbout">About</a></li>
+        <li class="nav-dropdown">
+          <a href="#products" data-i18n="navProducts" class="nav-dropdown-btn">Our Products <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 2px;"></i></a>
+          <div class="mega-menu" id="mega-menu">
+            <!-- Dynamically populated by products.js -->
+          </div>
+        </li>
         <li><a href="#services" data-i18n="navServices">Services</a></li>
         <li><a href="#profile" data-i18n="navProfile">Company Profile</a></li>
+        <li><a href="#" id="search-open-btn" aria-label="Search Products"><i class="fas fa-search"></i></a></li>
         <li><a href="#contact" class="nav-cta" data-i18n="navContact">Contact Us</a></li>
       </ul>
 
@@ -213,6 +220,22 @@
     </div>
   </div>
 
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="search-modal" style="z-index: 3000;">
+    <div class="modal-container search-container" style="max-width: 600px; width: 90%; padding: 2rem;">
+      <button class="modal-close" id="search-close" style="top: 1rem; right: 1rem; position: absolute; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #555;"><i class="fas fa-times"></i></button>
+      <div class="search-header" style="margin-bottom: 1rem;">
+        <h2 style="color: var(--primary); font-size: 1.5rem;">Search Products</h2>
+      </div>
+      <div class="search-body">
+        <input type="text" id="search-input" placeholder="Search for heaters, supplies..." autocomplete="off" style="width: 100%; padding: 1rem; border: 2px solid #ccc; border-radius: 8px; font-size: 1.1rem; margin-bottom: 1rem; outline: none;">
+        <div class="search-results" id="search-results" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem;">
+          <!-- Results populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ========== CONTACT ========== -->
   <section class="section contact" id="contact">
     <div class="container">
@@ -275,18 +298,13 @@
             </div>
           </div>
 
-          <div class="contact-social">
-            <a href="https://www.facebook.com/alejoelectricalsupply" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-          </div>
         </div>
       </div>
 
       <!-- Google Map -->
       <div class="map-container fade-in">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15854.371082035076!2d125.51!3d7.01!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32f96c5e1c4f1eeb%3A0x1!2sBinugao%2C%20Toril%2C%20Davao%20City%2C%20Davao%20del%20Sur!5e0!3m2!1sen!2sph!4v1700000000000"
+          src="https://maps.google.com/maps?q=6.973054,125.476257+(Alejo%20Electrical%20Supply)&hl=en&z=15&output=embed"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -312,6 +330,7 @@
   </footer>
 
   <!-- Scripts -->
+  <script src="js/products.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

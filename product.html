@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — Alejo Electrical Supply</title>
+  
+  <link rel="icon" type="image/jpeg" href="assets/logo_square.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+  <nav class="navbar solid-nav" id="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/logo_square.jpg" alt="Alejo Electrical Supply Logo" style="border-radius: 50%; aspect-ratio: 1/1; object-fit: cover;">
+        <span>Alejo Electrical Supply</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#home" data-i18n="navHome">Home</a></li>
+        <li><a href="index.html#about" data-i18n="navAbout">About</a></li>
+        <li class="nav-dropdown">
+          <a href="index.html#products" data-i18n="navProducts" class="nav-dropdown-btn">Our Products <i class="fas fa-chevron-down" style="font-size: 0.7em; margin-left: 2px;"></i></a>
+          <div class="mega-menu" id="mega-menu">
+            <!-- Dynamically populated by products.js -->
+          </div>
+        </li>
+        <li><a href="index.html#services" data-i18n="navServices">Services</a></li>
+        <li><a href="index.html#profile" data-i18n="navProfile">Company Profile</a></li>
+        <li><a href="#" id="search-open-btn" aria-label="Search Products"><i class="fas fa-search"></i></a></li>
+        <li><a href="index.html#contact" class="nav-cta" data-i18n="navContact">Contact Us</a></li>
+      </ul>
+      <div class="nav-toggle" id="nav-toggle">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <main class="product-page">
+    <div class="container">
+      <!-- Top Action Bar -->
+      <div class="product-actions">
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="quote-btn">QUOTE ME NOW</button>
+        </div>
+      </div>
+
+      <!-- Product Header -->
+      <h1 class="product-title" id="product-title">Loading...</h1>
+      
+      <!-- Product Overview -->
+      <div class="product-overview">
+        <div class="product-images">
+          <div class="main-image-container">
+            <img id="product-image" src="assets/logo_square.jpg" alt="Product Image">
+          </div>
+        </div>
+        
+        <div class="product-details">
+          <p id="product-description" class="lead-text">Loading description...</p>
+          
+          <h3 class="section-title">Shipping</h3>
+          <p id="product-shipping">Alejo Electrical Supply ships nationwide. We handle all necessary packaging and logistics to ensure that you receive your product on time and on spec.</p>
+          
+          <h3 class="section-title">Uses & Applications</h3>
+          <p id="product-uses">Loading uses...</p>
+          <img id="uses-image" src="assets/hero-bg.png" alt="Uses example" class="uses-image">
+        </div>
+      </div>
+
+      <!-- Tabbed Interface -->
+      <div class="tabs-container">
+        <ul class="tab-list">
+          <li class="tab-item active" data-tab="specs">Specifications</li>
+          <li class="tab-item" data-tab="apps">Applications</li>
+          <li class="tab-item" data-tab="features">Features & Benefits</li>
+        </ul>
+        
+        <div class="tab-content active" id="tab-specs">
+          <table class="specs-table">
+            <thead>
+              <tr>
+                <th>EXTRA FEATURES</th>
+                <th>DESCRIPTION</th>
+              </tr>
+            </thead>
+            <tbody id="specs-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="tab-content" id="tab-apps">
+          <ul class="bullet-list" id="apps-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+        
+        <div class="tab-content" id="tab-features">
+          <ul class="bullet-list" id="features-list">
+            <!-- Dynamically populated -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Quote Modal -->
+  <div class="modal-overlay" id="quote-modal">
+    <div class="modal-container quote-container">
+      <button class="modal-close" id="quote-close"><i class="fas fa-times"></i></button>
+      <div class="quote-header">
+        <h2 id="quote-title">REQUEST FOR INFORMATION</h2>
+        <p>Enter your comments/questions and click Submit to send us an email.</p>
+        <small class="required-hint">Fields marked with an * are required</small>
+      </div>
+      
+      <form class="quote-form" id="quote-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name <span class="required">*</span></label>
+            <input type="text" required>
+          </div>
+          <div class="form-group">
+            <label>Last Name <span class="required">*</span></label>
+            <input type="text" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Phone <span class="required">*</span></label>
+          <input type="tel" required>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Country <span class="required">*</span></label>
+            <select required>
+              <option value="Philippines">Philippines</option>
+              <option value="United States">United States</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Industry <span class="required">*</span></label>
+            <select required>
+              <option value="">-- Select Industry --</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="Food & Beverage">Food & Beverage</option>
+              <option value="Petrochemical">Petrochemical</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>File Upload</label>
+          <div class="file-upload-wrapper">
+            <button type="button" class="btn btn-upload">Select Files</button>
+            <input type="file" hidden id="file-upload">
+            <span class="file-name"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>Comments</label>
+          <textarea rows="3"></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary submit-btn">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="modal-overlay" id="search-modal">
+    <div class="modal-container search-container">
+      <button class="modal-close" id="search-close"><i class="fas fa-times"></i></button>
+      <div class="search-header">
+        <h2>Search Products</h2>
+      </div>
+      <div class="search-body">
+        <input type="text" id="search-input" placeholder="Search for heaters, supplies..." autocomplete="off" style="width: 100%; padding: 1rem; border: 2px solid #ccc; border-radius: 8px; font-size: 1.1rem; margin-bottom: 1rem; outline: none;">
+        <div class="search-results" id="search-results" style="max-height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem;">
+          <!-- Results populated by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Alejo Electrical Supply. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/products.js"></script>
+  <script src="script.js"></script>
+  <script src="js/product-page.js"></script>
+</body>
+</html>

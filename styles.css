@@ -185,7 +185,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: all var(--transition-base);
 }
 
-.navbar.scrolled {
+.navbar.scrolled,
+.navbar.solid-nav {
   padding: 0.6rem 0;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px) saturate(180%);
@@ -194,10 +195,27 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-sm);
 }
 
+.navbar.solid-nav {
+  background: var(--neutral-900);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.navbar.solid-nav .nav-brand,
+.navbar.solid-nav .nav-links > li > a {
+  color: var(--white) !important;
+}
+
+.navbar.solid-nav .nav-links > li > a:hover,
+.navbar.solid-nav .nav-links > li > a.active {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
 .navbar .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .nav-brand {
@@ -236,12 +254,15 @@ h1, h2, h3, h4, h5, h6 {
 .nav-links a {
   display: inline-flex;
   align-items: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
   border-radius: var(--radius-full);
-  transition: all var(--transition-fast);
+  transition: all var(--transition-base);
 }
 
 .nav-links a:hover,
@@ -609,6 +630,133 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--neutral-700);
 }
 
+.highlight.nav-cta:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white) !important;
+}
+
+/* --- Mega Menu --- */
+.nav-dropdown {
+  position: relative;
+}
+
+.mega-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  min-width: 280px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(0,0,0,0.05);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 25px;
+}
+
+.nav-dropdown:hover .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.mega-menu-group {
+  position: relative;
+}
+
+.mega-menu-group > a {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1.5rem !important;
+  color: var(--neutral-800) !important;
+  font-weight: 600;
+  transition: background var(--transition-fast);
+  cursor: pointer;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.mega-menu-group > a:hover {
+  background: var(--neutral-50) !important;
+  color: var(--primary) !important;
+}
+
+.mega-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 250px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(10px);
+  transition: all var(--transition-base);
+  border: 1px solid rgba(0,0,0,0.05);
+  list-style: none;
+}
+
+.mega-menu-group:hover .mega-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.mega-submenu a {
+  padding: 0.6rem 1.5rem !important;
+  color: var(--neutral-700) !important;
+  display: block !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.mega-submenu a:hover {
+  color: var(--primary) !important;
+  background: rgba(194, 59, 59, 0.05) !important;
+  padding-left: 1.8rem !important;
+}
+
+.mega-menu a {
+  color: var(--neutral-700) !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  padding: 0.6rem 0.75rem !important;
+  display: flex !important;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  background: transparent !important;
+  transition: all var(--transition-fast) !important;
+  white-space: nowrap;
+}
+
+.mega-menu a:hover {
+  color: var(--primary) !important;
+  background: rgba(194, 59, 59, 0.05) !important;
+  transform: translateX(4px);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
 /* ============================================
    SERVICES SECTION
    ============================================ */
@@ -1291,6 +1439,34 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(0);
   }
 
+  /* Mega Menu Mobile */
+  .mega-menu {
+    position: static;
+    transform: none !important;
+    box-shadow: none;
+    grid-template-columns: 1fr;
+    padding: var(--space-md);
+    display: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    background: rgba(0,0,0,0.02);
+    border: none;
+    margin-top: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nav-dropdown.active .mega-menu {
+    display: grid;
+  }
+  
+  .nav-dropdown > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .nav-links a {
     color: var(--neutral-600) !important;
     padding: 0.75rem var(--space-md);
@@ -1392,3 +1568,71 @@ h1, h2, h3, h4, h5, h6 {
 body.no-scroll {
   overflow: hidden;
 }
+
+/* ============================================
+   SEARCH MODAL
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  max-width: 600px;
+  width: 90%;
+  padding: 2rem;
+  max-height: 90vh;
+  position: relative;
+  transform: translateY(20px);
+  transition: all var(--transition-base);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-overlay.open .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--neutral-500);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  z-index: 10;
+}
+
+.modal-close:hover {
+  color: var(--primary);
+}
+
+.search-header {
+  margin-bottom: 1rem;
+}
+
+.search-header h2 {
+  color: var(--primary);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
