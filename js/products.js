@@ -66,7 +66,27 @@ window.products = productNames.map(name => {
       usesImg = 'https://www.basstor.com/uploads/202026031/electric-immersion-heater-flange13092579052.jpg';
       break;
 
-    case "Heater":
+    case "Tubular Heater":
+      mainImg = 'https://image.made-in-china.com/202f0j00RjZVbmwsMipY/U-Type-Industrial-Stainless-Steel-Electric-Tubular-Heating-Elements-for-Oven.webp';
+      usesImg = 'https://www.superbheater.com/uploads/201810468/ce-approved-1500w-electric-tubular-heater22137682383.jpg';
+      break;
+
+    case "Tubular Heater with Nipple":
+      mainImg = 'https://m.media-amazon.com/images/I/51y1A7UJtYL.jpg';
+      usesImg = 'https://m.media-amazon.com/images/I/41Q9he+kM-L._AC_UF894,1000_QL80_.jpg';
+      break;
+
+    case "U-Shaped Tubular Heater":
+      mainImg = 'https://ae-pic-a1.aliexpress-media.com/kf/H3f8032c97fec454780811c4da1c4b60el.jpg';
+      usesImg = 'https://www.etdzheater.com/Content/uploads/2021739098/2021010809060770d1c18924264f19b905c60a5d2877d0.jpeg';
+      break;
+
+    case "Fins Heater":
+      mainImg = 'https://www.basstor.com/uploads/202026031/tubular-air-finned-heater-element44537870900.jpg';
+      usesImg = 'https://sensemaster.co.uk/wp-content/uploads/2019/12/finbar_480.png';
+      break;
+
+    case " Heater":
       mainImg = '';
       usesImg = '';
       break;
