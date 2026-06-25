@@ -39,24 +39,39 @@ function generateId(name) {
 // Generate the full product data array
 window.products = productNames.map(name => {
   const isFlange = name.includes("Flange");
-  
+
   // Default placeholder images
   let mainImg = 'assets/logo_square.jpg';
   let usesImg = 'assets/hero-bg.png';
-  
+
   // Hardcode specific product photos here!
-  switch(name) {
+  switch (name) {
     case "Circulation Heater":
-      mainImg = 'https://www.zesta.com/Zesta/media/Images/products/heaters/zesta-watlow-starflow-heater-02.jpg?ext=.jpg';
+      mainImg = 'https://media.licdn.com/dms/image/v2/C5612AQFr2aV1YR6n-Q/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1612329736148?e=2147483647&v=beta&t=xSg2VxIOtlnMm36pYq0k9UG5LvMm3FQtJC2fiZiJMBg';
       usesImg = 'https://cdn.prod.website-files.com/62280aa485e4e53ca9e7a262/62e1cb3ab3c7981933840a83_5ad2be95d923b9b7c1c67386_300x350%2520Circulation%2520Heater.png';
       break;
-    // You can add more cases here for other products:
-    // case "Air Heater":
-    //   mainImg = 'url_here.jpg';
-    //   usesImg = 'url_here.jpg';
-    //   break;
+
+    case "Flange Heater":
+      mainImg = 'https://immersionheaters.uk/wp-content/uploads/2023/11/120KW-415V-1200mm-IMMERSED-DN250-10NB-PN16-FLANGE-HEATER-horizontal.jpeg';
+      usesImg = 'https://br.omega.com/omegaFiles/Heaters/images/TPN5_m.jpg';
+      break;
+
+    case "Immersion Heater":
+      mainImg = 'https://www.fueltankshop.co.uk/images/products/large/5760_1882.jpg';
+      usesImg = 'https://media.rs-online.com/Y2318024-01.jpg';
+      break;
+
+    case "Screw Flange Heater":
+      mainImg = 'https://image.made-in-china.com/202f0j00bYuRKIoGHyqk/9kw-Electric-Flange-Immersion-Heater-Heating-Element-for-Airing-Cupboard.webp';
+      usesImg = 'https://www.basstor.com/uploads/202026031/electric-immersion-heater-flange13092579052.jpg';
+      break;
+
+    case "Heater":
+      mainImg = '';
+      usesImg = '';
+      break;
   }
-  
+
   return {
     id: generateId(name),
     name: name,
@@ -66,7 +81,7 @@ window.products = productNames.map(name => {
     shippingInfo: "Alejo Electrical Supply ships nationwide. We handle all necessary packaging and logistics to ensure that you receive your product on time and on spec. Rush delivery is available upon request.",
     uses: `${name}s allow the flexibility of using many different alloys to help resist corrosion and maintain life longevity. Typically used for heavy and light oils, waxes, and water heating applications.`,
     usesImage: usesImg,
-    
+
     // Tab Data
     specifications: [
       { feature: "VOLTAGE", description: "Custom-built and supplied with voltages up to 600V." },
