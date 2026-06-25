@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // Downloads tab was removed
-
     // Update Quote Form Title
     document.getElementById('quote-title').textContent = `REQUEST FOR INFORMATION - ${product.name.toUpperCase()}`;
   }

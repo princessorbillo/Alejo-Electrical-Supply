@@ -210,8 +210,8 @@ function initNavbar() {
       "Immersion Heaters": ["Immersion Heater", "Flange Heater", "Screw Flange Heater", "Circulation Heater"],
       "Tubular Heaters": ["Tubular Heater", "Tubular Heater with Nipple", "U-Shaped Tubular Heater", "Fins Heater"],
       "Industrial Heaters": ["Band Heater", "Cartridge Heater", "Strip Heater", "Coil Heater", "Plate Heater"],
-      "Specialty Heaters": ["Air Heater", "Aluminum Block Heater", "Boiler Heater", "Bolt-On Type Heater", "Mold Heater", "Oven Heater"],
-      "Commercial & Appliance": ["Coffee Maker Heater", "Defrost Heater", "Dish Washing Heater", "French Fries Heater", "Hand Dryer Heater", "Sauna Bath Heater", "Tire Recapping Heater", "Whirlpool Heater"],
+      "Specialty Heaters": ["Air Heater", "Boiler Heater", "Oven Heater"],
+      "Commercial & Appliance": ["Coffee Maker Heater", "Defrost Heater", "Dish Washing Heater", "French Fries Heater", "Hand Dryer Heater", "Sauna Bath Heater"],
       "Bunker/Oil Heaters": ["Bunker Fuel Oil Heater", "Bunker Heater", "Shipping Vessels Bunker/Oil Heater"]
     };
 
