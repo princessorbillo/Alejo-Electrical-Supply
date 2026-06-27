@@ -285,6 +285,27 @@ function initNavbar() {
       }
     });
   }
+
+  // Mobile Submenu Toggle
+  document.querySelectorAll('.mega-menu-group > a').forEach(groupBtn => {
+    groupBtn.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        const parentLi = groupBtn.parentElement;
+        parentLi.classList.toggle('active');
+        const icon = groupBtn.querySelector('i');
+        if (icon) {
+          if (parentLi.classList.contains('active')) {
+            icon.classList.remove('fa-chevron-right');
+            icon.classList.add('fa-chevron-down');
+          } else {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-right');
+          }
+        }
+      }
+    });
+  });
 }
 
 // ---- PDF Scroll Viewer ----
