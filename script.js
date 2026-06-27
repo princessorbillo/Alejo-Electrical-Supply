@@ -192,7 +192,12 @@ function initNavbar() {
 
   // Close mobile nav on link click
   navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeNav);
+    link.addEventListener('click', (e) => {
+      if (link.classList.contains('nav-dropdown-btn') && window.innerWidth <= 768) {
+        return; // Don't close the entire menu when expanding the dropdown
+      }
+      closeNav();
+    });
   });
 
   function closeNav() {
