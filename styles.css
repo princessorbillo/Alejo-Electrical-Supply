@@ -1630,6 +1630,7 @@ body.no-scroll {
   width: 90%;
   padding: 2rem;
   max-height: 90vh;
+  overflow-y: auto;
   position: relative;
   transform: translateY(20px);
   transition: all var(--transition-base);
