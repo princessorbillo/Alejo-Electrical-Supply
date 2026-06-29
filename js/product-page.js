@@ -120,6 +120,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // We remove the JS form submission intercept to allow native HTML form POST
-  // This is required so FormSubmit.co can trigger the email activation flow and redirect.
+  // Form Submission
+  if (quoteForm) {
+    quoteForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = quoteForm.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(quoteForm);
+        
+        // Add product name to the form data implicitly
+        formData.append('Product', product.name);
+        
+        const response = await fetch(quoteForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+              'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          alert(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`);
+          quoteModal.classList.remove('open');
+          document.body.classList.remove('no-scroll');
+          quoteForm.reset();
+          if(fileNameDisplay) fileNameDisplay.textContent = '';
+        } else {
+          alert('Oops! There was a problem submitting your form. Please try again.');
+        }
+      } catch (error) {
+        alert('Oops! There was a problem submitting your form. Please check your connection.');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
 });
