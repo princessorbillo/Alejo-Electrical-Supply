@@ -169,7 +169,7 @@ function setLanguage(lang) {
 }
 
 // ---- Global Success Modal ----
-window.showSuccessModal = function(message, redirectUrl = 'index.html') {
+window.showSuccessModal = function(message, redirectUrl = '/') {
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay open';
   overlay.style.zIndex = '9999';
@@ -666,7 +666,7 @@ function initInquiryModal() {
           inquiryModal.classList.remove('open');
           document.body.classList.remove('no-scroll');
           inquiryForm.reset();
-          window.showSuccessModal('Thank you! Your ticket has been submitted. We will get back to you shortly.', 'index.html');
+          window.showSuccessModal('Thank you! Your ticket has been submitted. We will get back to you shortly.', '/');
         } else {
           alert('Oops! There was a problem submitting your form. Please try again.');
         }
