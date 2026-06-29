@@ -145,11 +145,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.ok) {
-          alert(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`);
           quoteModal.classList.remove('open');
           document.body.classList.remove('no-scroll');
           quoteForm.reset();
           if(fileNameDisplay) fileNameDisplay.textContent = '';
+          if (typeof window.showSuccessModal === 'function') {
+            window.showSuccessModal(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`, 'index.html');
+          } else {
+            alert(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`);
+            window.location.href = 'index.html';
+          }
         } else {
           alert('Oops! There was a problem submitting your form. Please try again.');
         }

@@ -168,6 +168,59 @@ function setLanguage(lang) {
   localStorage.setItem('alejo-lang', lang);
 }
 
+// ---- Global Success Modal ----
+window.showSuccessModal = function(message, redirectUrl = 'index.html') {
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay open';
+  overlay.style.zIndex = '9999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+  
+  const container = document.createElement('div');
+  container.className = 'modal-container';
+  container.style.textAlign = 'center';
+  container.style.padding = '3rem 2rem';
+  container.style.maxWidth = '400px';
+  container.style.transform = 'translateY(0)';
+  
+  const icon = document.createElement('i');
+  icon.className = 'fas fa-check-circle';
+  icon.style.fontSize = '4rem';
+  icon.style.color = '#4caf50';
+  icon.style.marginBottom = '1.5rem';
+  icon.style.display = 'block';
+  
+  const msg = document.createElement('h3');
+  msg.style.color = 'var(--neutral-800)';
+  msg.style.marginBottom = '1rem';
+  msg.textContent = 'Success!';
+  
+  const submsg = document.createElement('p');
+  submsg.style.color = 'var(--neutral-600)';
+  submsg.textContent = message;
+  
+  container.appendChild(icon);
+  container.appendChild(msg);
+  container.appendChild(submsg);
+  overlay.appendChild(container);
+  document.body.appendChild(overlay);
+  
+  let isClosed = false;
+  const closeAndRedirect = () => {
+    if (isClosed) return;
+    isClosed = true;
+    overlay.classList.remove('open');
+    setTimeout(() => {
+      overlay.remove();
+      window.location.href = redirectUrl;
+    }, 300); // Wait for fade out
+  };
+
+  overlay.addEventListener('click', closeAndRedirect);
+  setTimeout(closeAndRedirect, 3000);
+};
+
 // ---- Navbar Scroll ----
 function initNavbar() {
   const navbar = document.getElementById('navbar');
@@ -610,10 +663,10 @@ function initInquiryModal() {
         });
 
         if (response.ok) {
-          alert('Thank you! Your ticket has been submitted. We will get back to you shortly.');
           inquiryModal.classList.remove('open');
           document.body.classList.remove('no-scroll');
           inquiryForm.reset();
+          window.showSuccessModal('Thank you! Your ticket has been submitted. We will get back to you shortly.', 'index.html');
         } else {
           alert('Oops! There was a problem submitting your form. Please try again.');
         }
