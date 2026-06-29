@@ -561,6 +561,73 @@ function initSearch() {
   }
 }
 
+function initInquiryModal() {
+  const openInquiryBtn = document.getElementById('open-inquiry-btn');
+  const inquiryModal = document.getElementById('inquiry-modal');
+  const inquiryClose = document.getElementById('inquiry-close');
+  const inquiryForm = document.getElementById('inquiry-form');
+
+  if (!inquiryModal || !openInquiryBtn) return;
+
+  openInquiryBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    inquiryModal.classList.add('open');
+    document.body.classList.add('no-scroll');
+  });
+
+  if (inquiryClose) {
+    inquiryClose.addEventListener('click', () => {
+      inquiryModal.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    });
+  }
+
+  inquiryModal.addEventListener('click', (e) => {
+    if (e.target === inquiryModal) {
+      inquiryModal.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    }
+  });
+
+  if (inquiryForm) {
+    inquiryForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = inquiryForm.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(inquiryForm);
+        
+        const response = await fetch(inquiryForm.action, {
+          method: "POST",
+          body: formData,
+          headers: {
+              'Accept': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          alert('Thank you! Your ticket has been submitted. We will get back to you shortly.');
+          inquiryModal.classList.remove('open');
+          document.body.classList.remove('no-scroll');
+          inquiryForm.reset();
+        } else {
+          alert('Oops! There was a problem submitting your form. Please try again.');
+        }
+      } catch (error) {
+        alert('Oops! There was a problem submitting your form. Please check your connection.');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initSearch();
+  initInquiryModal();
 });
