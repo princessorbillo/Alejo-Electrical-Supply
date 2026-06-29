@@ -122,13 +122,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Form Submission
   if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
+    quoteForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`);
-      quoteModal.classList.remove('open');
-      document.body.classList.remove('no-scroll');
-      quoteForm.reset();
-      if(fileNameDisplay) fileNameDisplay.textContent = '';
+      
+      const submitBtn = quoteForm.querySelector('.submit-btn');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      try {
+        const formData = new FormData(quoteForm);
+        
+        // Add product name to the form data implicitly
+        formData.append('Product', product.name);
+        
+        const response = await fetch("https://formsubmit.co/ajax/alejoorbillo@gmail.com", {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          alert(`Thank you for your inquiry about ${product.name}! We will get back to you shortly.`);
+          quoteModal.classList.remove('open');
+          document.body.classList.remove('no-scroll');
+          quoteForm.reset();
+          if(fileNameDisplay) fileNameDisplay.textContent = '';
+        } else {
+          alert('Oops! There was a problem submitting your form. Please try again.');
+        }
+      } catch (error) {
+        alert('Oops! There was a problem submitting your form. Please check your connection.');
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
     });
   }
 });
