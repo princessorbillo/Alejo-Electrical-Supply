@@ -662,13 +662,20 @@ function initInquiryModal() {
           }
         });
 
-        if (response.ok) {
+        let result;
+        try {
+          result = await response.json();
+        } catch (e) {
+          result = { success: "false" };
+        }
+
+        if (response.ok && result.success !== "false" && result.success !== false) {
           inquiryModal.classList.remove('open');
           document.body.classList.remove('no-scroll');
           inquiryForm.reset();
           window.showSuccessModal('Thank you! Your ticket has been submitted. We will get back to you shortly.', '/');
         } else {
-          alert('Oops! There was a problem submitting your form. Please try again.');
+          alert(result.message || 'Oops! There was a problem submitting your form. Please try again.');
         }
       } catch (error) {
         alert('Oops! There was a problem submitting your form. Please check your connection.');

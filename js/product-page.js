@@ -144,7 +144,14 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
 
-        if (response.ok) {
+        let result;
+        try {
+          result = await response.json();
+        } catch (e) {
+          result = { success: "false" };
+        }
+
+        if (response.ok && result.success !== "false" && result.success !== false) {
           quoteModal.classList.remove('open');
           document.body.classList.remove('no-scroll');
           quoteForm.reset();
@@ -156,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '/';
           }
         } else {
-          alert('Oops! There was a problem submitting your form. Please try again.');
+          alert(result.message || 'Oops! There was a problem submitting your form. Please try again.');
         }
       } catch (error) {
         alert('Oops! There was a problem submitting your form. Please check your connection.');
